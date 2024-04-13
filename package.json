@@ -1,0 +1,21 @@
+{
+  "name": "notes",
+  "version": "1.0.0",
+  "description": "A REST API using Node.js, Express.js, and MongoDB for a note-keeping application. ",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "author": "Tarteel Tamimi",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "express": "^4.19.2",
+    "mongodb": "^6.5.0",
+    "mongoose": "^8.3.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  }
+}
