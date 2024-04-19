@@ -4,44 +4,32 @@ const Note = require('../models/note');
 const router = express.Router();
 
 router.post('/', async (req, res) => {
-    try {
-        const newNote = new Note(req.body);
-        await newNote.save()
-            .then((savedNote) => {
-                res.status(201).json({ message: "Note saved successfully!!" });
-            })
-            .catch((error) => {
-                console.log(error);
-                res.status(500).json({ message: "Something went wrong :(" });
-            })
-
-    } catch (error) {
-        console.log(error);
-        res.status(500).json({ message: "Something went wrong :(" });
-    }
+    const newNote = new Note(req.body);
+    await newNote.save()
+        .then((savedNote) => {
+            res.status(201).json({ message: "Note saved successfully!!", id: savedNote.id });
+        })
+        .catch((error) => {
+            console.log(error);
+            res.status(500).json({ message: "Something went wrong :(" });
+        })
 })
 
 router.get('/', async (req, res) => {
-    try {
-        const page = parseInt(req.query.page) || 1; 
-        const pageSize = parseInt(req.query.limit) || 10; 
-        const skip = (page - 1) * pageSize;
-        const total = await Note.countDocuments();
-        const totalPages = Math.ceil(total / pageSize);
+    const page = parseInt(req.query.page) || 1;
+    const pageSize = parseInt(req.query.limit) || 10;
+    const skip = (page - 1) * pageSize;
+    const total = await Note.countDocuments();
+    const totalPages = Math.ceil(total / pageSize);
 
-        Note.find().skip(skip).limit(pageSize)
-            .then((notes) => {
-                res.status(200).json({ notes: notes, total: total, totalPages: totalPages });
-            })
-            .catch((error) => {
-                console.log(error);
-                res.status(500).json({ message: "Something went wrong :(" });
-            })
-
-    } catch (error) {
-        console.log(error);
-        res.status(500).json({ message: "Something went wrong :(" });
-    }
+    Note.find().skip(skip).limit(pageSize)
+        .then((notes) => {
+            res.status(200).json({ notes, total, totalPages });
+        })
+        .catch((error) => {
+            console.log(error);
+            res.status(500).json({ message: "Something went wrong :(" });
+        })
 })
 
 router.get('/:id', async (req, res) => {
@@ -93,7 +81,7 @@ router.put('/:id', async (req, res) => {
         const updatedNote = req.body;
         await Note.findOneAndUpdate({ _id: id }, updatedNote, { new: true })
             .then((updatedNote) => {
-                res.status(200).json({ message: "Note updated successfully!!" });
+                res.status(200).json({ message: "Note updated successfully!!", note: updatedNote });
             })
             .catch((error => {
                 res.status(404).json({ message: "Can't find the note" });
