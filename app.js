@@ -1,7 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const Note = require('./routes/note')
+const Note = require('./routes/note');
+const errorHandler = require('./middlewares/errorHandler');
 
 const app = express();
 const PORT = 3000;
@@ -9,6 +10,8 @@ const PORT = 3000;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use('/note', Note);
+
+app.use(errorHandler);
 
 const connectToDb = async () => {
   try {
