@@ -5,7 +5,7 @@ const Note = require('./routes/note');
 const errorHandler = require('./middlewares/errorHandler');
 
 const app = express();
-const PORT = 3000;
+const PORT = 5000;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
