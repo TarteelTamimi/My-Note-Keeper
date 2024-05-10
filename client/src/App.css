@@ -1,0 +1,243 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+body {
+    background-color: #fff6ce;
+}
+
+.nav {
+    display: flex;
+    width: 30%;
+}
+
+.nav h1 {
+    margin: 15px;
+    font-size: 2em;
+}
+
+.search {
+    margin: 15px;
+    margin-bottom: 50px;
+    margin-left: 50px;
+    background-color: #d4dcb1;
+    padding: 7px;
+    border-radius: 40px;
+    width: 40%;
+}
+
+.search input {
+    border: none;
+    outline: none;
+    background-color: #d4dcb1;
+    font-size: 1.3em;
+}
+
+.search-icon {
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size: 1.25em;
+    color: gray;
+}
+
+.notes {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.note-take-btn {
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 10px;
+    background-color: #d4dcb1;
+    width: 25%;
+    border-radius: 10px;
+    font-size: 1.3em;
+}
+
+.note-take-form {
+    padding: 10px;
+    padding-top: 20px;
+    padding-bottom: 70px;
+    margin-top: -15px;
+    background-color: #d4dcb1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 25%;
+    gap: 10px;
+    border-radius: 10px;
+    position: relative;
+}
+
+.note-take-form input {
+    border: none;
+    outline: none;
+    border: 2px solid black;
+    padding: 10px;
+    border-radius: 15px;
+    width: 70%;
+    background-color: #d4dcb1;
+    margin-top: 10px;
+}
+
+.note-take-form textarea {
+    border: none;
+    outline: none;
+    border: 2px solid black;
+    padding: 10px;
+    border-radius: 15px;
+    width: 70%;
+    background-color: #d4dcb1;
+    min-height: 100px;
+}
+
+.note-take-form .save-btn {
+    border: none;
+    outline: none;
+    background-color: #fff6ce;
+    position: absolute;
+    right: 30px;
+    bottom: 20px;
+    padding: 5px 15px;
+    border-radius: 7px;
+    cursor: pointer;
+
+    &:hover {
+        background-color: #f8fede;
+    }
+}
+
+.note-take-form .close-btn {
+    border: none;
+    outline: none;
+    background-color: #fff6ce;
+    position: absolute;
+    right: 110px;
+    bottom: 20px;
+    padding: 5px 15px;
+    border-radius: 7px;
+    cursor: pointer;
+
+    &:hover {
+        background-color: #f8fede;
+    }
+}
+
+.notes-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.note-card {
+    background-color: #d4dcb1;
+    width: 20%;
+    min-height: 200px;
+    min-width: 200px;
+    padding: 20px;
+    margin: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    position: relative;
+    cursor: pointer;
+    &:hover {
+        & button {
+            display: block;
+        }
+    }
+}
+
+.note-card h2 {
+    margin-bottom: 15px;
+}
+
+.content {
+    margin-bottom: 40px;
+}
+
+.create-date {
+    border: 2px solid black;
+    border-radius: 20px;
+    margin-top: 20px;
+    font-size: 0.6em;
+    padding: 5px 10px;
+    position: absolute;
+    left: 30px;
+    bottom: 20px;
+    display: inline-block;
+}
+
+.note-card button {
+    background-color: #d4dcb1;
+    border: none;
+    outline: none;
+    font-size: 1.4em;
+    display: block;
+    position: absolute;
+    right: 30px;
+    bottom: 20px;
+    display: none;
+    cursor: pointer;
+}
+
+.dialog {
+    width: 40%;
+    min-height: 300px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #e6e0bb;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+
+}
+
+.dialog input,
+.dialog textarea {
+    width: 80%;
+    margin-bottom: 10px;
+    padding: 8px;
+    border: 2px solid black;
+    border-radius: 15px;
+    background-color: #e6e0bb;
+    outline: none;
+}
+
+.dialog textarea {
+    min-height: 100px;
+}
+
+.dialog-actions {
+    width: 50%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.dialog button {
+    padding: 8px 16px;
+    margin-right: 10px;
+    background-color: #fff6ce;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    &:hover {
+        background-color: #f8fede;
+    }
+}
