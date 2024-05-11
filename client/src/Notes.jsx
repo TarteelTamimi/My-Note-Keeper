@@ -1,34 +1,41 @@
 import React, { useState, useEffect } from 'react'
 import NoteCard from './NoteCard'
-import Search from './Search';
+import Search from './Search'
+import axios from 'axios'
 
 function Notes() {
     const [title, setTitle] = useState("")
     const [content, setContent] = useState("")
     const [expand, setExpand] = useState(false)
-    const [selectedNote, setSelectedNote] = useState(null);
-    const [showDialog, setShowDialog] = useState(false);
-    const [updatedTitle, setUpdatedTitle] = useState("");
+    const [selectedNote, setSelectedNote] = useState(null)
+    const [showDialog, setShowDialog] = useState(false)
+    const [updatedTitle, setUpdatedTitle] = useState("")
     const [updatedContent, setUpdatedContent] = useState("")
     const [searchText, setSearchText] = useState("")
     const [notes, setNotes] = useState([])
     const BASE_URL = "http://localhost:5000"
 
     useEffect(() => {
-        fetch(`${BASE_URL}/note`)
-        .then(res => res.json())
-        .then(json => setNotes(json.notes))
+        axios.get(`${BASE_URL}/note`)
+            .then(res => {
+                setNotes(res.data.notes)
+            })
+            .catch(err => console.log(err))
     }, [])
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log("title: ", title);
-        console.log("content: ", content);
 
         const newNote = {
             title: title,
             content: content
         }
+
+        axios.post(`${BASE_URL}/note`, newNote)
+            .then(res => {
+                console.log("posted");
+            })
+            .catch(err => console.log(err))
 
         setNotes([newNote, ...notes])
         setTitle("")
@@ -41,6 +48,19 @@ function Notes() {
         const newNotes = notes.filter(
             (note) => note.title !== title
         )
+
+        const toDeleteNote = notes.filter(
+            (note) => note.title === title
+        )
+        const idToDelete = toDeleteNote[0]._id
+
+
+        axios.delete(`${BASE_URL}/note/${idToDelete}`)
+            .then(res => {
+                console.log("deleted");
+            })
+            .catch(err => console.log(err))
+
 
         setNotes(newNotes)
     }
@@ -63,6 +83,15 @@ function Notes() {
             }
             return note;
         });
+
+        const idToUpdate = selectedNote._id
+
+        axios.put(`${BASE_URL}/note/${idToUpdate}`, { title: updatedTitle, content: updatedContent })
+            .then(res => {
+                console.log("Updated");
+            })
+            .catch(err => console.log(err))
+
         setNotes(updatedNotes);
         setShowDialog(false);
     }
@@ -101,7 +130,8 @@ function Notes() {
                             setContent(e.target.value)
                         }
                         type="textarea"
-                        placeholder='Content' />
+                        placeholder='Content'
+                        required />
                     <button type="submit" className='save-btn'>Save</button>
                     <button className='close-btn' onClick={() => {
                         setExpand(!expand)

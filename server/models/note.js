@@ -12,7 +12,7 @@ const noteSchema = new mongoose.Schema({
         type: String,
         required: true,
         minLength: 2,
-        maxLength: 20
+        maxLength: 200
     },
     createdAt: {
         type: Date,
