@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 const bodyParser = require('body-parser');
 const Note = require('./routes/note');
 const errorHandler = require('./middlewares/errorHandler');
@@ -8,6 +9,7 @@ const app = express();
 const PORT = 5000;
 
 app.use(bodyParser.json());
+app.use(cors());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use('/note', Note);
 

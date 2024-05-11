@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import NoteCard from './NoteCard'
 import Search from './Search';
 
@@ -9,10 +9,16 @@ function Notes() {
     const [selectedNote, setSelectedNote] = useState(null);
     const [showDialog, setShowDialog] = useState(false);
     const [updatedTitle, setUpdatedTitle] = useState("");
-    const [updatedContent, setUpdatedContent] = useState("");
-    const [searchText, setSearchText] = useState("");
+    const [updatedContent, setUpdatedContent] = useState("")
+    const [searchText, setSearchText] = useState("")
+    const [notes, setNotes] = useState([])
+    const BASE_URL = "http://localhost:5000"
 
-    var [notes, setNotes] = useState([])
+    useEffect(() => {
+        fetch(`${BASE_URL}/note`)
+        .then(res => res.json())
+        .then(json => setNotes(json.notes))
+    }, [])
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -30,7 +36,7 @@ function Notes() {
     }
 
     const deleteNote = (e, title) => {
-        e.stopPropagation(); 
+        e.stopPropagation();
 
         const newNotes = notes.filter(
             (note) => note.title !== title
@@ -111,6 +117,7 @@ function Notes() {
                         <NoteCard title={note.title} content={note.content} handleDeleteNote={deleteNote} />
                     </div>
                 ))}
+                {console.log(filteredNotes)}
             </div>
 
 
