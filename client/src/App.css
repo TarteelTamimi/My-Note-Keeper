@@ -241,3 +241,66 @@ body {
         background-color: #f8fede;
     }
 }
+
+@media(max-width: 770px) {
+    body {
+        font-size: 12px;
+    }
+
+    .note-take-btn {
+        padding: 10px;
+        width: 40%;
+        border-radius: 10px;
+        font-size: 1.3em;
+    }
+    
+    .note-take-form {
+        padding: 10px;
+        padding-top: 20px;
+        padding-bottom: 70px;
+        margin-top: -10px;
+        width: 40%;
+    }
+}
+
+@media(max-width: 610px) {
+    .search {
+        width: 60%;
+    }
+
+    .dialog {
+        width: 60%;    
+    }
+
+}
+
+@media(max-width: 510px) {
+    .note-take-btn {
+        padding: 10px;
+        width: 70%;
+        border-radius: 10px;
+        font-size: 1.3em;
+    }
+    
+    .note-take-form {
+        padding: 10px;
+        padding-top: 20px;
+        padding-bottom: 70px;
+        margin-top: -10px;
+        width: 70%;
+
+    }
+
+    .search {
+        width: 80%;
+    }
+
+    .nav {
+        display: flex;
+        width: 50%;
+    }
+
+    .dialog {
+        width: 80%;    
+    }
+}
